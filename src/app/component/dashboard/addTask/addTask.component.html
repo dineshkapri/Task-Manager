@@ -1,0 +1,32 @@
+<div class="mainData">
+    <button (click)="addTask()" class="addButton" mat-raised-button color="primary">ADD TASK</button>
+    <div class="next">
+        <div *ngIf="displayTask" id="topData">
+            <form class="example-form" id="taskForm" #userForm="ngForm" (ngSubmit)="saveData(userForm.value)">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Task Name</mat-label>
+                    <input matInput placeholder="task" name="task" [(ngModel)]="formData.task" required minlength="4" >
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Enter Details of Task</mat-label>
+                    <textarea matInput placeholder="Details...." name="details"
+                        [(ngModel)]="formData.details"></textarea>
+                </mat-form-field>
+
+                <button [disabled]="formData.error" type="submit" class="saveButton" mat-raised-button color="warn">SAVE</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="bottomData">
+        <h1 style="font-family: 'Courier New', Courier, monospace;"> TASK LIST</h1>
+        <p *ngIf="taskData.length === 0"> Empty</p>
+        <div *ngFor="let s of taskData;" class="dynamicData">
+            <p>
+                <span> Task Name : </span> {{s.task}} <br>
+                <span> Task Details : </span> {{s.details}}
+            </p>
+        </div>
+    </div>
+</div>
